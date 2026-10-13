@@ -10,19 +10,19 @@ The lecture recording and the demo clips. Watch the full lecture once, then use 
 
 | Video | Length | Link |
 | --- | --- | --- |
-| Beyond Vibe Coding – full lecture | – | [Watch](LINK) |
+| Beyond Vibe Coding – full lecture | 1:21:38 | [Watch](https://youtu.be/9rTKgsyKrA0) |
 
-**Chapters in the recording** *(fill in timestamps)*
+**Chapters in the recording**
 
 | Time | Part |
 | --- | --- |
-| 00:00 | Welcome and agenda |
-| – | 01 From vibe coding to agentic development |
-| – | 02 Harness and engineering control |
-| – | 03 Two loops |
-| – | 04 The product loop · Demo 1 · Demo 2 |
-| – | 05 The execution loop · Demo 3 · Demo 4 |
-| – | 06 The MVP playbook |
+| [00:00](https://youtu.be/9rTKgsyKrA0?t=0) | Welcome and agenda |
+| [02:33](https://youtu.be/9rTKgsyKrA0?t=153) | 01 From vibe coding to agentic development |
+| [16:18](https://youtu.be/9rTKgsyKrA0?t=978) | 02 Harness and engineering control |
+| [21:28](https://youtu.be/9rTKgsyKrA0?t=1288) | 03 Two loops |
+| [26:46](https://youtu.be/9rTKgsyKrA0?t=1606) | 04 The product loop · Demo 1 · Demo 2 |
+| [53:46](https://youtu.be/9rTKgsyKrA0?t=3226) | 05 The execution loop · Demo 3 · Demo 4 |
+| [1:19:24](https://youtu.be/9rTKgsyKrA0?t=4764) | 06 The MVP playbook |
 
 ## Clips and demos
 
