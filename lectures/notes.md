@@ -1,6 +1,6 @@
 # Lecture Notes – Beyond Vibe Coding
 
-[← Back to course home](../README.md) · [Slides (PDF)](Beyond_VibeCoding.pdf)
+[← Back to course home](../README.md) · [Slides (PDF)](Beyond_VibeCoding.pdf) · [Lecture video](https://youtu.be/9rTKgsyKrA0)
 
 **Main message:** with an agent you get a new coworker that knows more, has seen more and has the tools to design, build, test and deliver faster than ever. Make the most of it. But you are still in charge, and you are responsible for what gets shipped. AI makes understanding software engineering more important, not less.
 
@@ -9,6 +9,8 @@
 ---
 
 ## Part 01 – From vibe coding to agentic development
+
+*Video: [02:33](https://youtu.be/9rTKgsyKrA0?t=153)*
 
 **Vibe coding** (Andrej Karpathy, February 2025): describe what you want, run it, ask for changes until it looks right. Nobody reads the code; the only test is what you see on screen.
 
@@ -43,7 +45,9 @@
 
 ## Part 02 – The harness and engineering control
 
-**How an agent works:** prompt and context go in; the agent loops *plan → act → observe → refine* using tools (tests, files, APIs via MCP) and memory, until it thinks it is done. The engineer stays outside the loop: sets the goal, grants the tools, approves the result.
+*Video: [16:18](https://youtu.be/9rTKgsyKrA0?t=978)*
+
+**How an agent works:** prompt and context go in; the agent loops *plan → act → observe → refine* using tools (tests, files, APIs via MCP) and memory, until it thinks it is done. The engineer stays outside the loop: sets the goal, grants the tools, approves the result. Human-in-the-loop: the agent stops for review before a change is accepted.
 
 **Agent = LLM + harness.** The harness is everything around the model, kept in the repo:
 
@@ -73,6 +77,8 @@
 
 ## Part 03 – Two loops
 
+*Video: [21:28](https://youtu.be/9rTKgsyKrA0?t=1288)*
+
 - **Product loop** – *are we building the right thing?* Discover, define story and spec, learn from use. Led by users and the Product Owner.
 - **Execution loop** – *are we building it right?* Plan, build and verify, review. Led by the System Engineer; the agents do much of the work.
 - The handover: a **Ready story** goes in, an **accepted increment** comes back.
@@ -86,6 +92,8 @@
 ---
 
 ## Part 04 – The product loop
+
+*Video: [26:46](https://youtu.be/9rTKgsyKrA0?t=1606)*
 
 **Product framing** turns evidence into `product/product.md`. The Product Assistant drafts, the PO decides:
 
@@ -113,23 +121,27 @@ Every statement in `product.md` is labelled as evidence, assumption, hypothesis 
 
 ## Part 05 – The execution loop
 
+*Video: [53:46](https://youtu.be/9rTKgsyKrA0?t=3226)*
+
 Agents build, the engineer controls, the PO accepts:
 
 | Step | Agent | Human | Output |
 | --- | --- | --- | --- |
 | 1 Plan | Planner reads `spec.md` and the code | Engineer checks the plan fits the story | `plan.md` |
-| 2 Implement | Coder creates a feature branch and builds | Engineer watches, stops drift | Branch |
+| 2 Implement | Coder opens a GitHub Issue and a feature branch, then builds | Engineer watches, stops drift | Issue + branch |
 | 3 Test | Coder runs the full gate, checks every AC | Engineer reads the AC verdicts | PASS / FAIL per AC |
 | 4 Pull request | Coder self-reviews, opens the PR and stops | Engineer reviews code, PO tries the Preview | Pull request |
 | 5 Accept | Coder deploys on the engineer's go | PO accepts, engineer merges | Deployed increment |
 
-**The Planner** writes only `plan.md`: facts about the existing system (not guesses), the approach and rejected options, migrations (or why none), every acceptance criterion mapped to a test, and human checkpoints. The plan holds the *how*, never the *what*.
+**The Planner** writes only `plan.md`: facts about the existing system (not guesses), the approach and rejected options, migrations (or why none), every acceptance criterion mapped to a test, and human checkpoints. The plan holds the *how*, never the *what*: it may not weaken, redefine or expand an acceptance criterion, and a gap goes back to the PO.
 
 **Feedback goes back through the product loop.** The Product Assistant classifies it (defect, usability issue, changed requirement, new user need, feature idea, invalidated assumption, no action), and the PO decides the outcome: change a story, create a story, update `product.md`, or no action. Feedback never becomes code directly.
 
 ---
 
 ## Part 06 – The MVP playbook
+
+*Video: [1:19:24](https://youtu.be/9rTKgsyKrA0?t=4764)*
 
 1. **Collect** – set up, add design-thinking material to `docs/design-thinking/`.
 2. **Frame** – Product Assistant drafts `product.md`; you decide as PO.
@@ -138,6 +150,8 @@ Agents build, the engineer controls, the PO accepts:
 5. **Plan** – Planner writes `plan.md`; you approve as engineer.
 6. **Build** – Coder builds on a feature branch, runs `npm run verify`, opens the PR.
 7. **Accept, learn** – accept as PO, merge and deploy as engineer, test with users. Feedback → new or revised stories.
+
+**Getting started:** run `npm install` and `npm run verify` (lint, types, tests, build and E2E – before the PR and again before merge), add your design-thinking results to `docs/design-thinking/`, and start in the product loop, one story at a time.
 
 > One story at a time, through both loops. Generated code alone is never Done.
 
