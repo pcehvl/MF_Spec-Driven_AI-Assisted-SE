@@ -45,7 +45,7 @@ Everything you need after the lecture is linked from this page: the setup guide,
 
 One story at a time, through both loops.
 
-Run every step from **Build**, OpenCode's main agent. It hands each step to the agent that owns it (see the [Setup Guide](setup/SETUP.md#7-opencode-connect-a-model-and-meet-the-agents), §7).
+Run every step from **Build**, OpenCode's main agent. It hands each step to the agent that owns it (see the [Setup Guide](setup/SETUP.md#7-opencode-meet-the-agents), §7).
 
 **Product loop – Product Assistant drafts, you decide as Product Owner**
 
