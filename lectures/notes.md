@@ -54,20 +54,22 @@
 | Part | In the repo | Purpose |
 | --- | --- | --- |
 | Context | `AGENTS.md`, `product/`, `docs/` | What the agent knows before it starts |
-| Roles | `.opencode/agents/` | Product Assistant (what), Planner (how), Coder (build) |
+| Roles | `.opencode/agents/` | Build (OpenCode's main agent) hands work to Product Assistant (what), Planner (how), Coder (build) |
 | Skills | `.opencode/skills/` | Six reusable methods, e.g. product-management |
 | Permissions | front-matter in `.opencode/agents/*.md` | What each agent may edit and run: allow, ask, deny |
 | Checks | `e2e/`, npm scripts | Lint, types, tests, build, Playwright before every PR |
 
 > Same model, better harness, better result. If it is not in the repo, the agent does not know it.
 
-**Three agents, two human roles**
+**One main agent, three role agents, two human roles**
 
 | | Product Assistant | Planner | Coder |
 | --- | --- | --- | --- |
 | Owns | Why and what | How | Build and verify |
 | Writes | `product.md`, `spec.md` | `plan.md` | code, tests, `verification.md`, PR |
 | Never | code or technical plans | implements or changes acceptance criteria | edits requirements or merges alone |
+
+> You always work in Build. It delegates each step to the role agent that owns it; the role agents run as subagents with their own, narrower permissions.
 
 - **Product Owner** – owns the *what* and accepts the value.
 - **System Engineer** – owns the *how*, the quality gate and the merge.
