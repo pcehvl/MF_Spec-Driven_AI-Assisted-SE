@@ -239,17 +239,30 @@ opencode
 
 1. Type `/connect`, choose **OpenCode**, and select the **course workspace** in the browser window that opens. OpenCode then uses the course workspace's models, policies and budget. (Using your own provider instead? Choose it and log in or paste your API key.)
 2. Type `/models` and pick **MiMo-v2.6-Flash**.
-3. Switch agent with **Tab** (or the agent picker; see Keybinds in the [OpenCode docs](https://opencode.ai/v2/docs) if your version differs). You should see three agents:
+3. Make sure **Build** is the active agent (shown at the bottom of the screen).
 
-| Agent | Owns | Writes | Use it for |
+> **Always work in Build.** Product Assistant, Planner and Coder are subagents with narrow permissions. If you select one of them directly, it cannot do everything a step needs. Ask Build, and it hands the work to the right agent, for example: *"Use the Product Assistant to draft `product/product.md`."*
+
+**Switching agents (OpenCode 2 defaults; see [Keybinds](https://opencode.ai/v2/docs/cli/keybinds) if your version differs)**
+
+| Action | Keys |
+| --- | --- |
+| Next agent | **Shift+Tab** |
+| Agent picker | **Ctrl+X**, then **A** |
+| Open a subagent's session | **↓** |
+| Previous / next subagent session | **←** / **→** |
+| Back to the main (Build) session | **↑** |
+
+| Agent | Role | Writes | Build uses it for |
 | --- | --- | --- | --- |
+| Build | Main agent, where you work | via the subagents | Every step |
 | Product Assistant | WHY / WHAT | `product/product.md`, `spec.md` | Framing, user stories, acceptance criteria, feedback |
 | Planner | HOW | `plan.md` | A technical plan for one Ready story |
 | Coder | BUILD / VERIFY | code, tests, `verification.md` | Branch, implement, `npm run verify`, Pull Request |
 
-**First session (Playbook step 1–2).** Put your design-thinking material (interview notes, personas, problem statement) in `docs/design-thinking/`. Select the Product Assistant and ask it to draft `product/product.md` from that material. Answer its questions one at a time. You decide; it drafts.
+**First session (Playbook step 1–2).** Put your design-thinking material (interview notes, personas, problem statement) in `docs/design-thinking/`. In Build, ask it to use the Product Assistant to draft `product/product.md` from that material. Answer its questions one at a time. You decide; it drafts.
 
-**Approvals.** Each agent has its own permissions. When OpenCode asks to run `git push`, `gh pr create` or read `.env`, read the request before you approve. Approving is your job as engineer.
+**Approvals.** Each subagent has its own permissions; the Coder asks before `git push` and `gh pr create`. Read every request before you approve. Approving is your job as engineer.
 
 ## 8. Supabase: database, login and migrations
 
@@ -349,6 +362,7 @@ You are ready to build when every box on day 1 is ticked.
 - [ ] `npm run verify` passes
 - [ ] Joined the course workspace in OpenCode (invitation accepted)
 - [ ] OpenCode connected to the course workspace with `/connect`, **MiMo-v2.6-Flash** selected in `/models`, and you can see Product Assistant, Planner and Coder
+- [ ] Build is the active agent, and you can switch agents with **Shift+Tab** or **Ctrl+X** then **A**
 
 **Before the first data story**
 
@@ -379,6 +393,7 @@ You are ready to build when every box on day 1 is ticked.
 | E2E tests fail with "Executable doesn't exist" | Playwright browser missing | `npx playwright install chromium` (Linux/WSL: add `--with-deps`) |
 | Port 5173 already in use | Another dev server is running | Stop it with Ctrl+C, or close the other terminal |
 | Agents missing in OpenCode, or permission errors on start | OpenCode 1 installed, or started outside the repo | Check `opencode --version` is 2.x; run `opencode` from the repo folder |
+| An agent says it may not edit a file or run a command | You selected Product Assistant, Planner or Coder directly instead of Build | Press **Shift+Tab** (or **Ctrl+X** then **A**) to switch back to Build, and ask Build to use that agent |
 | No invitation, or the course workspace is not in the workspace menu | Signed in with a different email, or the invitation expired (7 days) | Sign out and sign in with the email the invitation was sent to; ask the lecturer for a new invitation |
 | `/connect` does not show the course workspace | Invitation not accepted yet | Accept the invitation in the email or under **Pending invitations** in the Console, then run `/connect` again |
 | Model requests stop with a budget or limit error | Your monthly budget in the course workspace is used up | Check your usage in the Console and contact the lecturer |
