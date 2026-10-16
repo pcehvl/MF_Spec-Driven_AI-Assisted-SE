@@ -4,7 +4,7 @@
 
 Everything you need to install and configure before you build your MVP with the MyMVP agentic harness.
 
-**Contents:** [1. Before you start](#1-before-you-start) · [2. Software](#2-the-software-at-a-glance) · [3. Accounts](#3-create-your-accounts) · [4. Install](#4-install-the-software) · [5. Git and GitHub](#5-git-and-github-your-own-copy-of-mymvp) · [6. Project setup](#6-install-the-project-and-run-the-checks) · [7. OpenCode](#7-opencode-connect-a-model-and-meet-the-agents) · [8. Supabase](#8-supabase-database-login-and-migrations) · [9. Vercel](#9-vercel-preview-and-production) · [10. Checklist](#10-ready-checklist) · [11. Security](#11-security-rules) · [12. Troubleshooting](#12-troubleshooting)
+**Contents:** [1. Before you start](#1-before-you-start) · [2. Software](#2-the-software-at-a-glance) · [3. Accounts](#3-create-your-accounts) · [4. Install](#4-install-the-software) · [5. Git and GitHub](#5-git-and-github-your-own-copy-of-mymvp) · [6. Project setup](#6-install-the-project-and-run-the-checks) · [7. OpenCode](#7-opencode-meet-the-agents) · [8. Supabase](#8-supabase-database-login-and-migrations) · [9. Vercel](#9-vercel-preview-and-production) · [10. Checklist](#10-ready-checklist) · [11. Security](#11-security-rules) · [12. Troubleshooting](#12-troubleshooting)
 
 ## 1. Before you start
 
@@ -23,12 +23,13 @@ MyMVP is a **harness**, not a product. It gives you three AI agents (Product Ass
 
 1. Create accounts
 2. Install the software
-3. Create your own repo from the template and clone it
-4. Install project dependencies and run the checks
-5. Join the course workspace and connect OpenCode to it
-6. Connect Supabase (when needed)
-7. Connect Vercel (when needed)
-8. Tick off the ready checklist
+3. Join the course workspace and connect OpenCode to it, so the agent can help you with the rest
+4. Create your own repo from the template and clone it
+5. Install project dependencies and run the checks
+6. Meet the agents in your repo
+7. Connect Supabase (when needed)
+8. Connect Vercel (when needed)
+9. Tick off the ready checklist
 
 ## 2. The software at a glance
 
@@ -146,6 +147,35 @@ supabase --version
 vercel --version
 ```
 
+### Connect OpenCode now
+
+Connect OpenCode before the next steps, so the agent can help you if something goes wrong.
+
+```bash
+mkdir -p ~/code && cd ~/code
+opencode
+```
+
+1. Type `/connect`, choose **OpenCode**, and select the **course workspace** in the browser window that opens. OpenCode then uses the course workspace's models, policies and budget. (Using your own provider instead? Choose it and log in or paste your API key.)
+2. Type `/models` and pick **MiMo-v2.6-Flash**.
+3. Check that **Build** is the active agent (shown at the bottom of the screen). Press **Shift+Tab** if it is not.
+
+**Stuck? Ask Build.** When a command fails in a later step, paste this into OpenCode with your details filled in:
+
+```text
+I am setting up the MyMVP course project on <macOS / Windows WSL / Linux>.
+I ran: <the exact command>
+I got: <the full error text>
+Explain the likely cause, then propose a fix. Do not run anything until I approve.
+```
+
+Rules while the agent helps you:
+
+- Read every command before you approve it. Ask "why?" if you don't understand it.
+- Setup fixes change your machine, never the project. If the agent wants to edit project files or tests to make a check pass, say no and ask in the course channel.
+- Never approve `sudo`, deleting files or reading `.env` unless you understand why it is needed.
+- If OpenCode itself does not work (install, invitation, `/connect`, budget), use [Troubleshooting](#12-troubleshooting).
+
 ## 5. Git and GitHub: your own copy of MyMVP
 
 Each of you gets your own repository made from the MyMVP template. That gives you your own `main` branch, feature branches and Pull Requests, which is what the Coder agent works with.
@@ -224,22 +254,20 @@ npm run verify
 4. `build` – production build with Vite
 5. `test:e2e` – Playwright end-to-end tests in a real browser
 
-This is the same gate the Coder must pass before it opens a Pull Request. If a check fails on a fresh clone, fix the setup first (see Troubleshooting); never ask the agent to weaken a test.
+This is the same gate the Coder must pass before it opens a Pull Request. If a check fails on a fresh clone, fix the setup first: ask Build with the prompt in [§4](#connect-opencode-now), or see [Troubleshooting](#12-troubleshooting). Setup fixes change your machine, never the project: never let the agent weaken a test or edit project files to get a green result.
 
 Leave the two values in `.env` empty for now. You fill them in step 8. *[Lecturer: confirm that `npm run verify` passes on the template with an empty `.env`.]*
 
-## 7. OpenCode: connect a model and meet the agents
+## 7. OpenCode: meet the agents
 
-Start OpenCode from the repo folder so it reads `AGENTS.md` and the agents in `.opencode/`.
+Now that `npm run verify` is green, quit OpenCode and start it again from the repo folder. Inside the repo it also loads the harness: `AGENTS.md` and the three role agents in `.opencode/`.
 
 ```bash
 cd ~/code/<your-repo>
 opencode
 ```
 
-1. Type `/connect`, choose **OpenCode**, and select the **course workspace** in the browser window that opens. OpenCode then uses the course workspace's models, policies and budget. (Using your own provider instead? Choose it and log in or paste your API key.)
-2. Type `/models` and pick **MiMo-v2.6-Flash**.
-3. Make sure **Build** is the active agent (shown at the bottom of the screen).
+1. Make sure **Build** is the active agent (shown at the bottom of the screen).
 
 > **Always work in Build.** Product Assistant, Planner and Coder are subagents with narrow permissions. If you select one of them directly, it cannot do everything a step needs. Ask Build, and it hands the work to the right agent, for example: *"Use the Product Assistant to draft `product/product.md`."*
 
@@ -384,6 +412,8 @@ You are ready to build when every box on day 1 is ticked.
 - Read what an agent asks permission for before you approve it. Agents ask before `git push`, PR commands, destructive git commands and reading `.env`.
 
 ## 12. Troubleshooting
+
+Ask Build first, with the prompt in [§4](#connect-opencode-now). Use the table below when OpenCode itself does not work, or when the agent's fix does not solve the problem.
 
 | Symptom | Likely cause | Fix |
 | --- | --- | --- |
