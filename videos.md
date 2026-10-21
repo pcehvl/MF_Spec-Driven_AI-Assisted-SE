@@ -14,10 +14,12 @@ The lecture recording and the demo clips. Watch the full lecture once, then use 
 
 **Chapters in the recording**
 
+The recording is of an earlier version of the lecture: here the harness comes before the two loops. In the current [slides](lectures/Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) and [lecture notes](lectures/notes.md), *Two loops* is part 02 and *Harness and engineering control* is part 03.
+
 | Time | Part |
 | --- | --- |
 | [00:00](https://youtu.be/9rTKgsyKrA0?t=0) | Welcome and agenda |
-| [02:33](https://youtu.be/9rTKgsyKrA0?t=153) | 01 From vibe coding to agentic development |
+| [02:33](https://youtu.be/9rTKgsyKrA0?t=153) | 01 From vibe coding to agentic development (now: to spec-driven development) |
 | [16:18](https://youtu.be/9rTKgsyKrA0?t=978) | 02 Harness and engineering control |
 | [21:28](https://youtu.be/9rTKgsyKrA0?t=1288) | 03 Two loops |
 | [26:46](https://youtu.be/9rTKgsyKrA0?t=1606) | 04 The product loop · Demo 1 · Demo 2 |
