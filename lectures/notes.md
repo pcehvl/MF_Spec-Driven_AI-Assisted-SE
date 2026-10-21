@@ -8,48 +8,102 @@
 
 ---
 
-## Part 01 – From vibe coding to agentic development
+**About the video:** the recording is of an earlier version of the lecture. In the recording, the harness (part 03 here) comes before the two loops (part 02 here), and some slides have been added or changed since. These notes and the [slides](Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) follow the current version.
+
+---
+
+## Part 01 – From vibe coding to spec-driven development
 
 *Video: [02:33](https://youtu.be/9rTKgsyKrA0?t=153)*
 
 **Vibe coding** (Andrej Karpathy, February 2025): describe what you want, run it, ask for changes until it looks right. Nobody reads the code; the only test is what you see on screen.
 
 - Every requirement and decision lives in one place: the code. No spec, no record of why.
-- Fine for throwaway prototypes. Looking right says nothing about edge cases, user data or real user needs.
+- Each session starts from scratch, and the result is often weak on maintainability, correctness and security.
+- **When is vibe coding fine?** When all three hold: the code is *throwaway*, the stakes are *low*, and errors *show on use*.
 
-**The agent as a new coworker.** It knows more, has seen more code, has the tools, and gets better with every model. The question is no longer *what the agent can do*, but *what you ask it to do*. You would not tell a new colleague "build something, I'll look at it on screen".
+**The agent as a new coworker.** It knows more, has seen more code, has the tools, and gets better with every model. The question is no longer *what the agent can do*, but *what you ask it to do*.
 
-**The workflow stays the same.** Requirements, design, implementation, testing, review, integration – each with its own artefact. What changes is who does implementation and testing:
+**The software engineering workflow stays the same.** Requirements, design, implementation, testing, review, integration – each with its own artefact. The agent changes the code and runs the checks; the engineer owns the other phases, with the agent assisting. Scrum still delivers one increment per Sprint, and feedback becomes new requirements.
 
 | Phase | Who | Artefact |
 | --- | --- | --- |
-| Requirements | Engineer | User story / use case |
-| Architecture / design | Engineer | Design model |
-| Implementation | Agent | Code on a branch |
-| Testing | Agent | Check results |
-| Review | Engineer | Pull request |
-| Integration | Engineer | Git history |
+| Requirements | Engineer specifies the outcome and criteria (agent assists) | User story / use case |
+| Architecture / design | Engineer decides the design (agent assists) | Design model |
+| Implementation | Agent changes the code on a bounded task | Code on a branch |
+| Testing | Agent writes and runs the checks | CI results |
+| Review | Engineer inspects the diff and the evidence (agent assists) | Pull request |
+| Integration | Engineer accepts and merges (agent assists) | Git history |
 
-**Without specs, the agent guesses** (cf. Brooks, *No Silver Bullet*, 1987):
+**Agentic programming** adds a spec and a review to the loop: you specify, the agent builds, you verify against the spec, and new learning goes into the spec. Unlike vibe coding, it needs engineering knowledge: the spec carries intent across sessions and agents, and the engineer verifies structure, correctness and security.
 
-- *Vague in, vague out* – the agent fills every gap with a guess.
-- *The chat forgets* – each session starts from zero; the spec stays in the repo.
-- *Same prompt, different code* – the model varies; the spec and the checks do not.
-- *No criteria, no done* – without acceptance criteria nobody can say PASS or FAIL.
+**Specs give us control over the agent** (cf. Brooks, *No Silver Bullet*, 1987: the hardest part is deciding precisely what to build):
 
-> The spec is the contract between you and the agent. Write it before the code.
+- *Determinism* – same prompt, different code: the code varies, the criteria do not.
+- *Control* – the agent acts on its own: scope and constraints set the limits.
+- *Verifiable* – no criteria, no done: the acceptance criteria give PASS or FAIL.
+- *Review* – the agent writes faster than you can read: check against the spec, not every line.
 
-**Agentic programming** adds a spec and a review to the loop: you specify, the agent builds, you verify against the spec, and new learning goes into the spec.
+> The agent varies. The spec and its checks do not. That is where the control is.
+
+**What we mean by a spec.** A spec lives in the repo and outlives the chat. It has four parts:
+
+| Part | Contains | Example (`login-lockout.md`) |
+| --- | --- | --- |
+| User story | Who needs what, and why | As a user, I want my account locked after five failed logins, so attackers cannot guess my password. |
+| Acceptance criteria | Testable conditions: PASS or FAIL | Five failed attempts lock the account for 15 minutes · a successful login resets the counter |
+| Constraints | Security, privacy and compliance rules | Every lockout is logged for audit |
+| Out of scope | What the agent must not change | Password reset flow |
+
+**Two files: what to build, then how.**
+
+| | `spec.md` – what and why | `plan.md` – how |
+| --- | --- | --- |
+| Contains | Story, acceptance criteria, constraints, scope | Architecture, tech stack, data model, interfaces |
+| Reviewed by | Product Owner and engineer | Engineer and tech lead |
+| Changes when | The need changes | The design or technology changes |
+| The agent uses it to | Know when the work is done | Know how to build it |
+
+> One reason to change per file. Swap the tech without rewriting the need.
 
 ---
 
-## Part 02 – The harness and engineering control
+## Part 02 – Two loops
+
+*Video: [21:28](https://youtu.be/9rTKgsyKrA0?t=1288)*
+
+- **Product loop** – *are we building the right thing?* Discover, define story and spec, learn from use. Led by people: users and the Product Owner. They decide what to build and accept the value.
+- **Execution loop** – *are we building it right?* Plan, build and verify, review. Led by the System Engineer; the Planner and Coder do the work, and the agentic loop runs here.
+- The handover: a **chosen story + spec** goes in (Sprint Planning), an **accepted increment** comes back (Sprint Review).
+
+**Two roles, as in Scrum.** In this course you play both: decide as PO, build and merge as System Engineer.
+
+| Product Owner · product loop | System Engineer · execution loop |
+| --- | --- |
+| Owns the *what* and the *why* | Owns the *how* and the quality |
+| Vision, scope and priority | Approves the Planner's plan |
+| Stories and acceptance criteria | Steers the Coder, stops drift |
+| Answers refinement questions | Owns the gate and the Definition of Done |
+| Accepts the increment in the Preview | Reviews the code in the pull request |
+| Decides on feedback | Merges and deploys after acceptance |
+
+**Methods you know:** Design Thinking (Double Diamond) decides *what* to build. Scrum builds it in increments, and the Definition of Done decides when an increment is ready. Agents work inside each Sprint.
+
+**Weekly sprints can become daily.** When agents code and test, that work takes hours, not days. In the same week we can run five sprints instead of one, and ship more.
+
+**We can reach the MVP sooner.** The MVP – the first increment users can try – closes the first execution loop. Agents give us the capacity to get there faster, which leaves time for user tests and the next stories.
+
+> Agents speed up the execution loop. Only people using the product can close the product loop.
+
+---
+
+## Part 03 – The harness and engineering control
 
 *Video: [16:18](https://youtu.be/9rTKgsyKrA0?t=978)*
 
-**How an agent works:** prompt and context go in; the agent loops *plan → act → observe → refine* using tools (tests, files, APIs via MCP) and memory, until it thinks it is done. The engineer stays outside the loop: sets the goal, grants the tools, approves the result. Human-in-the-loop: the agent stops for review before a change is accepted.
+**How an agent works:** prompt and context go in; the agent loops *plan → act → observe → refine* using tools (tests, files, APIs via MCP) and memory. The engineer stays outside the loop: sets the goal, grants the tools, approves the result. Human-in-the-loop: the agent stops for review before a change is accepted.
 
-**Agent = LLM + harness.** The harness is everything around the model, kept in the repo:
+**Agent = LLM + harness.** You define the work (intent, user and technical requirements, technical plan), approve it (review, Preview) and own the result. The harness sits between you and your systems (GitHub, Supabase, Vercel), and it lives in the repo:
 
 | Part | In the repo | Purpose |
 | --- | --- | --- |
@@ -61,35 +115,31 @@
 
 > Same model, better harness, better result. If it is not in the repo, the agent does not know it.
 
-**One main agent, three role agents, two human roles**
+**Three agents in the template harness – separate roles, skills and files**
 
 | | Product Assistant | Planner | Coder |
 | --- | --- | --- | --- |
 | Owns | Why and what | How | Build and verify |
+| Does | Turns discovery into framing, writes and refines stories, sets story status, classifies feedback | Plans exactly one Ready story, checks the code first, maps every AC to a test, names risks and human checkpoints | Opens the Issue and a feature branch, implements the plan with tests, runs the full gate, opens the PR, deploys on acceptance |
+| Skills | `product-management`, `feedback-management` | `plan-story` | `implement-story`, `ui-design`, `deploy` |
 | Writes | `product.md`, `spec.md` | `plan.md` | code, tests, `verification.md`, PR |
 | Never | code or technical plans | implements or changes acceptance criteria | edits requirements or merges alone |
 
 > You always work in Build. It delegates each step to the role agent that owns it; the role agents run as subagents with their own, narrower permissions.
 
-- **Product Owner** – owns the *what* and accepts the value.
-- **System Engineer** – owns the *how*, the quality gate and the merge.
-- In this course you play both roles. Notice which hat you wear.
+**An agent is a role, a skill is a method.**
 
----
+| | Agent file – who and what | Skill – how |
+| --- | --- | --- |
+| Where | `.opencode/agents/product-assistant.md` | `.opencode/skills/product-management/SKILL.md` |
+| Contains | Role, limits, permissions, hand-off | Description, steps, template |
+| Loaded | Always, while the agent runs | Only when the task needs it |
+| Answers | Who acts, and what it may touch | How the task is done, every time |
 
-## Part 03 – Two loops
+- **Anatomy of an agent file:** the *front-matter* sets permissions and is enforced by the harness (e.g. the Product Assistant may edit `product/` only, and has no shell). The *prompt* sets the role and limits, and the hand-off (the Product Assistant delivers `spec.md` for the Planner).
+- **Anatomy of a skill:** a *description* that decides when the agent loads it, the *steps* – the same method every time – and a *template* (e.g. the four parts of `spec.md`).
 
-*Video: [21:28](https://youtu.be/9rTKgsyKrA0?t=1288)*
-
-- **Product loop** – *are we building the right thing?* Discover, define story and spec, learn from use. Led by users and the Product Owner.
-- **Execution loop** – *are we building it right?* Plan, build and verify, review. Led by the System Engineer; the agents do much of the work.
-- The handover: a **Ready story** goes in, an **accepted increment** comes back.
-
-**Methods you know:** Design Thinking (Double Diamond) decides *what* to build. Scrum builds it in increments. Agents work inside each Sprint. The agents do not change the methods, only the speed.
-
-**Weekly sprints can become daily.** When agents code and test, that work shrinks from days to hours, while planning and review still take human time. More sprints means more feedback and an earlier MVP. Caution: this only works when stories are small and Ready, and someone has time to review every day.
-
-> Agents speed up the execution loop. Only people using the product can close the product loop.
+> Keep roles small and methods reusable. Six skills, three agents: fix a skill once, and every agent gains.
 
 ---
 
@@ -109,15 +159,18 @@
 
 Every statement in `product.md` is labelled as evidence, assumption, hypothesis or decision. No story is written until the PO approves the framing.
 
-**Traceability:** evidence (E1–E6 in `docs/design-thinking/`) → framing (F1–F4 in `product.md`) → backlog (one `spec.md` per story). Rule: *no source, no story.*
+**Traceability:** evidence (E1–E6 in `docs/design-thinking/`) → framing (F1–F4 in `product.md`) → backlog (one `spec.md` per story). Rule: *no source, no story.* One story, one `spec.md`: it holds the status and traces back to the evidence.
 
-**A backlog item is a spec that says what to build:**
+**Product framing gave us the Product Backlog** – Scrum terms, and where they live in the repo:
 
-- **User story** – As a *role*, I want *goal*, so that *value*. One user, one need, one value; small enough for one vertical slice.
-- **Acceptance criteria** – observable behaviour, each one PASS or FAIL, covering the edge cases that matter.
-- **Context and limits** – constraints, explicit out-of-scope, status and trace to evidence.
+| In Scrum | In our repo | Where |
+| --- | --- | --- |
+| Product Backlog | `product/stories/`, one folder per user story | Framing |
+| Product Backlog Item | One `spec.md` per user story, `status: backlog` | Framing |
+| Backlog refinement | The Product Assistant asks, the PO answers | Refinement |
+| Definition of Ready | Five Ready checks pass, then `status: ready` | Refinement |
 
-**Definition of Ready – five checks:** `spec.md` exists with an ID · traces to evidence · intent is clear · testable acceptance criteria · no blocking questions. The Product Assistant asks the PO one question at a time and writes each answer into the spec.
+**Definition of Ready – five checks:** `spec.md` exists with an ID · traces to evidence · intent is clear · testable acceptance criteria · no blocking questions. The Product Assistant asks the PO one question at a time and writes each answer into the spec. No GitHub yet: the story lives in `product/stories/` until the Planner and Coder take it.
 
 ---
 
@@ -125,19 +178,19 @@ Every statement in `product.md` is labelled as evidence, assumption, hypothesis 
 
 *Video: [53:46](https://youtu.be/9rTKgsyKrA0?t=3226)*
 
-Agents build, the engineer controls, the PO accepts:
+Agents build, the System Engineer controls, the PO accepts:
 
 | Step | Agent | Human | Output |
 | --- | --- | --- | --- |
-| 1 Plan | Planner reads `spec.md` and the code | Engineer checks the plan fits the story | `plan.md` |
-| 2 Implement | Coder opens a GitHub Issue and a feature branch, then builds | Engineer watches, stops drift | Issue + branch |
-| 3 Test | Coder runs the full gate, checks every AC | Engineer reads the AC verdicts | PASS / FAIL per AC |
-| 4 Pull request | Coder self-reviews, opens the PR and stops | Engineer reviews code, PO tries the Preview | Pull request |
-| 5 Accept | Coder deploys on the engineer's go | PO accepts, engineer merges | Deployed increment |
+| 1 Plan | Planner reads `spec.md` and the code, writes the plan | Engineer checks the plan fits the story | `plan.md` |
+| 2 Implement | Coder opens a GitHub Issue and a branch, then builds | Engineer watches, stops it if it drifts | Issue + branch |
+| 3 Test | Coder runs the full gate, checks every AC | Engineer reads the AC verdicts | AC: PASS / FAIL |
+| 4 Pull request | Coder self-reviews, opens the PR and stops | Engineer reviews the code, PO tries the Preview | Pull request |
+| 5 Accept | Coder deploys on the engineer's go | PO accepts, engineer merges | Deployed MVP |
 
-**The Planner** writes only `plan.md`: facts about the existing system (not guesses), the approach and rejected options, migrations (or why none), every acceptance criterion mapped to a test, and human checkpoints. The plan holds the *how*, never the *what*: it may not weaken, redefine or expand an acceptance criterion, and a gap goes back to the PO.
+**The Planner** writes only `plan.md`: facts about the existing system (not guesses), the approach and rejected options, a migration (or the reason for none), every acceptance criterion mapped to a test, and human checkpoints it cannot fake. It ends with an implementation sequence – for US-004: migration and RLS policy, edit form and save, delete, hide actions for others, tests and a Playwright journey. The plan holds the *how*, never the *what*: it may not weaken, redefine or expand an acceptance criterion, and a gap goes back to the PO.
 
-**Feedback goes back through the product loop.** The Product Assistant classifies it (defect, usability issue, changed requirement, new user need, feature idea, invalidated assumption, no action), and the PO decides the outcome: change a story, create a story, update `product.md`, or no action. Feedback never becomes code directly.
+**Feedback goes back through the product loop.** The Product Assistant classifies it (defect, usability issue, changed requirement, new user need, feature idea, invalidated assumption, no action), and the PO decides the outcome: change an existing story, create a new story, update `product.md`, or take no action. Feedback never becomes code directly.
 
 ---
 
@@ -145,15 +198,46 @@ Agents build, the engineer controls, the PO accepts:
 
 *Video: [1:19:24](https://youtu.be/9rTKgsyKrA0?t=4764)*
 
-1. **Collect** – set up, add design-thinking material to `docs/design-thinking/`.
-2. **Frame** – Product Assistant drafts `product.md`; you decide as PO.
-3. **Story** – one `spec.md` with testable acceptance criteria.
-4. **Ready** – refine one question at a time.
-5. **Plan** – Planner writes `plan.md`; you approve as engineer.
-6. **Build** – Coder builds on a feature branch, runs `npm run verify`, opens the PR.
-7. **Accept, learn** – accept as PO, merge and deploy as engineer, test with users. Feedback → new or revised stories.
+**Seven steps, two loops.** Same seven steps in both tracks; only the tools in the execution loop differ.
 
-**Getting started:** run `npm install` and `npm run verify` (lint, types, tests, build and E2E – before the PR and again before merge), add your design-thinking results to `docs/design-thinking/`, and start in the product loop, one story at a time.
+*Product loop – the agent drafts, you decide as Product Owner*
+
+1. **Collect** – gather design-thinking evidence about users and the problem.
+2. **Frame** – who it is for, which problem, which outcome; you decide as PO.
+3. **Story** – one spec per story, with testable acceptance criteria (`ACn`).
+4. **Ready** – refine one question at a time until the story is Ready.
+
+*Execution loop – the agent plans and builds, you control as System Engineer*
+
+5. **Plan** – the agent proposes a technical plan; you approve it as engineer.
+6. **Build and verify** – the agent builds the smallest slice and checks every `ACn`.
+7. **Accept and learn** – accept PASS or FAIL per `ACn` as PO, release, test with users. Feedback → new or revised stories.
+
+**Your take-home harness – OpenCode track** ([MF-MyMVP-Template](https://github.com/pcehvl/MF-MyMVP-Template)). One repo, both loops in OpenCode; the app code and its checks live next to the specs.
+
+```text
+your-mvp/
+├─ AGENTS.md
+├─ product/
+│  ├─ product.md
+│  └─ stories/US-XXX-<slug>/   spec.md · plan.md · verification.md
+├─ docs/
+│  ├─ design-thinking/
+│  └─ architecture.md · ui-guidelines.md
+├─ .opencode/                  agents/ · skills/
+├─ src/ · e2e/
+├─ supabase/migrations/
+└─ .github/                    PR template
+```
+
+- `product/` – `product.md` holds the framing. One folder per story *is* the backlog: no `backlog.md`, no Issues.
+- `.opencode/` – Product Assistant, Planner and Coder, with six skills.
+- `plan.md` · `verification.md` – the Planner's plan you approve as engineer, and the Coder's evidence you read before you accept as PO.
+- `npm run verify` – lint, types, tests, build and E2E, before the PR and again before merge.
+
+**Your take-home harness – Lovable track** ([MF-MyMVP-Lovable-Template](https://github.com/pcehvl/MF-MyMVP-Lovable-Template), see the [Lovable track](https://pcehvl.github.io/MF_Spec-Driven_AI-Assisted-SE-Lovable/)). A product repo in OpenCode, the app in Lovable: `/handover` sends `spec.md` to Lovable, `/return` brings `acceptance.md` back, and the execution loop runs in Lovable with `/harness-init`, `/build-story`, `/accept-story` and `/publish`.
+
+**Getting started:** run `npm install` and `npm run verify`, add your design-thinking results to `docs/design-thinking/`, and start in the product loop, one story at a time.
 
 > One story at a time, through both loops. Generated code alone is never Done.
 
