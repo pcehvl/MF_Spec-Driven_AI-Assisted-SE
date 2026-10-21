@@ -22,7 +22,7 @@ Everything you need after the lecture is linked from this page: the setup guide,
 | What | Link | Use it for |
 | --- | --- | --- |
 | Setup Guide | [setup/SETUP.md](setup/SETUP.md) | Installing Git, Node.js, OpenCode, Supabase and Vercel, and getting `npm run verify` green |
-| Slides (PDF) | [lectures/Beyond_VibeCoding_Speck-Driven_AI-Assisted_Development.pdf](lectures/Beyond_VibeCoding_Speck-Driven_AI-Assisted_Development.pdf) | The full slide deck |
+| Slides (PDF) | [lectures/Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf](lectures/Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) | The full slide deck |
 | Lecture notes | [lectures/notes.md](lectures/notes.md) | The key ideas of each part, in text |
 | Videos | [videos.md](videos.md) | Lecture recording and the four demo clips |
 | Demos | [demos.md](demos.md) | What each demo shows, what to watch for, and the files involved |
