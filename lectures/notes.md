@@ -1,6 +1,6 @@
 # Lecture Notes – Beyond Vibe Coding
 
-[← Back to course home](../README.md) · [Slides (PDF)](Beyond_VibeCoding.pdf) · [Lecture video](https://youtu.be/9rTKgsyKrA0)
+[← Back to course home](../README.md) · [Slides (PDF)](Beyond_VibeCoding_Speck-Driven_AI-Assisted_Development.pdf) · [Lecture video](https://youtu.be/9rTKgsyKrA0)
 
 **Main message:** with an agent you get a new coworker that knows more, has seen more and has the tools to design, build, test and deliver faster than ever. Make the most of it. But you are still in charge, and you are responsible for what gets shipped. AI makes understanding software engineering more important, not less.
 
