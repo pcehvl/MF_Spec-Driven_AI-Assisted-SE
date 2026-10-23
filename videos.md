@@ -4,8 +4,6 @@
 
 The lecture recording and the demo clips. Watch the full lecture once, then use the demo clips while you work through the [MVP Playbook](README.md#the-mvp-playbook-in-seven-steps).
 
-*[Lecturer: replace each `LINK` with the video URL (YouTube unlisted, Vimeo or the university video service). Add timestamps to the recording if you have them.]*
-
 ## Full lecture
 
 | Video | Length | Link |
