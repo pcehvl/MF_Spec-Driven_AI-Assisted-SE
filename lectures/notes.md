@@ -1,6 +1,6 @@
 # Lecture Notes – Beyond Vibe Coding
 
-[← Back to course home](../README.md) · [Slides (PDF)](Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) · [Lecture video](https://youtu.be/9rTKgsyKrA0)
+[← Back to course home](../README.md) · [Slides (PDF)](Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) · [Lecture video](https://youtu.be/dxGCkEh3MBU)
 
 **Main message:** with an agent you get a new coworker that knows more, has seen more and has the tools to design, build, test and deliver faster than ever. Make the most of it. But you are still in charge, and you are responsible for what gets shipped. AI makes understanding software engineering more important, not less.
 
@@ -8,13 +8,13 @@
 
 ---
 
-**About the video:** the recording is of an earlier version of the lecture. In the recording, the harness (part 03 here) comes before the two loops (part 02 here), and some slides have been added or changed since. These notes and the [slides](Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) follow the current version.
+**About the video:** the recording follows the current version of the lecture, in the same order as these notes. The *Video* link under each part jumps to where that part starts in the recording.
 
 ---
 
 ## Part 01 – From vibe coding to spec-driven development
 
-*Video: [02:33](https://youtu.be/9rTKgsyKrA0?t=153)*
+*Video: [02:49](https://youtu.be/dxGCkEh3MBU?t=169)*
 
 **Vibe coding** (Andrej Karpathy, February 2025): describe what you want, run it, ask for changes until it looks right. Nobody reads the code; the only test is what you see on screen.
 
@@ -70,7 +70,7 @@
 
 ## Part 02 – Two loops
 
-*Video: [21:28](https://youtu.be/9rTKgsyKrA0?t=1288)*
+*Video: [21:09](https://youtu.be/dxGCkEh3MBU?t=1269)*
 
 - **Product loop** – *are we building the right thing?* Discover, define story and spec, learn from use. Led by people: users and the Product Owner. They decide what to build and accept the value.
 - **Execution loop** – *are we building it right?* Plan, build and verify, review. Led by the System Engineer; the Planner and Coder do the work, and the agentic loop runs here.
@@ -99,7 +99,7 @@
 
 ## Part 03 – The harness and engineering control
 
-*Video: [16:18](https://youtu.be/9rTKgsyKrA0?t=978)*
+*Video: [27:22](https://youtu.be/dxGCkEh3MBU?t=1642)*
 
 **How an agent works:** prompt and context go in; the agent loops *plan → act → observe → refine* using tools (tests, files, APIs via MCP) and memory. The engineer stays outside the loop: sets the goal, grants the tools, approves the result. Human-in-the-loop: the agent stops for review before a change is accepted.
 
@@ -141,11 +141,23 @@
 
 > Keep roles small and methods reusable. Six skills, three agents: fix a skill once, and every agent gains.
 
+**Guardrails: what the agent cannot do.** Three levels of control:
+
+| Enforced – the harness blocks it | Checked – the gate catches it | Approved – a human decides it |
+| --- | --- | --- |
+| Deterministic: the agent cannot do it, whatever the prompt says | Automatic: the change fails before it reaches a human | The agent stops and waits |
+| Permissions per agent: allow, ask, deny | Lint, types, tests, build, Playwright | Engineer approves `plan.md` |
+| Branch protection: no push to main | Row Level Security tested per table | Engineer reviews the pull request |
+| Secrets only in `.env`, never in code or prompts | Secret scanning and dependency audit | PO accepts in the Preview |
+| No migrations or deletes against production | Out-of-scope files flagged in the diff | Engineer merges and deploys |
+
+> A rule in a prompt is a wish. A rule in the harness is a guardrail.
+
 ---
 
 ## Part 04 – The product loop
 
-*Video: [26:46](https://youtu.be/9rTKgsyKrA0?t=1606)*
+*Video: [38:21](https://youtu.be/dxGCkEh3MBU?t=2301)*
 
 **Product framing** turns evidence into `product/product.md`. The Product Assistant drafts, the PO decides:
 
@@ -176,7 +188,7 @@ Every statement in `product.md` is labelled as evidence, assumption, hypothesis 
 
 ## Part 05 – The execution loop
 
-*Video: [53:46](https://youtu.be/9rTKgsyKrA0?t=3226)*
+*Video: [1:04:45](https://youtu.be/dxGCkEh3MBU?t=3885)*
 
 Agents build, the System Engineer controls, the PO accepts:
 
@@ -190,13 +202,24 @@ Agents build, the System Engineer controls, the PO accepts:
 
 **The Planner** writes only `plan.md`: facts about the existing system (not guesses), the approach and rejected options, a migration (or the reason for none), every acceptance criterion mapped to a test, and human checkpoints it cannot fake. It ends with an implementation sequence – for US-004: migration and RLS policy, edit form and save, delete, hide actions for others, tests and a Playwright journey. The plan holds the *how*, never the *what*: it may not weaken, redefine or expand an acceptance criterion, and a gap goes back to the PO.
 
+**Green is not done: reading the evidence.** The agent writes both the code and the tests, so a green gate only proves the code agrees with itself.
+
+| The question | How you check it | Who |
+| --- | --- | --- |
+| Does it test the right thing? | ACs written by the PO, each mapped to a test | PO |
+| Are the tests honest? | Read the test diff: nothing skipped, weakened or mocked away | Engineer |
+| Did it stay in scope? | The diff matches `plan.md`, no files outside it | Engineer |
+| Does it work for the user? | Walk through every AC in the Preview | PO |
+
+> The gate checks the code. You check the gate.
+
 **Feedback goes back through the product loop.** The Product Assistant classifies it (defect, usability issue, changed requirement, new user need, feature idea, invalidated assumption, no action), and the PO decides the outcome: change an existing story, create a new story, update `product.md`, or take no action. Feedback never becomes code directly.
 
 ---
 
 ## Part 06 – The MVP playbook
 
-*Video: [1:19:24](https://youtu.be/9rTKgsyKrA0?t=4764)*
+*Video: [1:32:55](https://youtu.be/dxGCkEh3MBU?t=5575)*
 
 **Seven steps, two loops.** Same seven steps in both tracks; only the tools in the execution loop differ.
 
