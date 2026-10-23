@@ -250,7 +250,7 @@ npm run verify
 
 This is the same gate the Coder must pass before it opens a Pull Request. If a check fails on a fresh clone, fix the setup first: ask Build with the prompt in [§4](#connect-opencode-now), or see [Troubleshooting](#12-troubleshooting). Setup fixes change your machine, never the project: never let the agent weaken a test or edit project files to get a green result.
 
-Leave the two values in `.env` empty for now. You fill them in step 8. *[Lecturer: confirm that `npm run verify` passes on the template with an empty `.env`.]*
+Leave the two values in `.env` empty for now. You fill them in step 8.
 
 ## 7. OpenCode: meet the agents
 
