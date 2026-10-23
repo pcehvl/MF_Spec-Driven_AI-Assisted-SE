@@ -23,7 +23,7 @@ MyMVP is a **harness**, not a product. It gives you three AI agents (Product Ass
 
 1. Create accounts
 2. Install the software
-3. Join the course workspace and connect OpenCode to it, so the agent can help you with the rest
+3. Connect OpenCode to a free model, so the agent can help you with the rest
 4. Create your own repo from the template and clone it
 5. Install project dependencies and run the checks
 6. Meet the agents in your repo
@@ -41,7 +41,7 @@ Nine tools cover the whole loop; seven are needed on day one.
 | GitHub CLI (`gh`) | 2.x | The Coder opens Pull Requests with `gh pr create` | Day 1 |
 | Node.js (includes npm) | 24 LTS | Installs packages and runs `npm run dev` / `npm run verify` | Day 1 |
 | OpenCode | 2.x | Runs the Product Assistant, Planner and Coder agents | Day 1 |
-| A language model provider | – | The model behind the agents (account + key or subscription) | Day 1 |
+| A language model provider | – | The model behind the agents (a free model in OpenCode, or your own provider) | Day 1 |
 | VS Code (or another editor) | latest | Reading specs, plans and code; reviewing diffs | Day 1 |
 | Playwright Chromium | via npm | Browser for the end-to-end tests in `npm run verify` | Day 1 |
 | Supabase account + CLI | latest | Database, Auth, Row Level Security, migrations | First story that stores data |
@@ -51,24 +51,18 @@ All other dependencies (React, Vite, Tailwind, shadcn/ui, Vitest, Playwright) ar
 
 ## 3. Create your accounts
 
-Create four accounts, all with the same email, and join the course workspace in OpenCode. Sign up for Supabase and Vercel with **Continue with GitHub** so everything is linked.
+Create four accounts, all with the same email. Sign up for Supabase and Vercel with **Continue with GitHub** so everything is linked.
 
 | Account | Where | Cost | Notes |
 | --- | --- | --- | --- |
 | GitHub | [github.com/signup](https://github.com/signup) | Free | Apply for the [GitHub Student Developer Pack](https://education.github.com/pack) with your student email; it includes GitHub Copilot. |
-| OpenCode (course workspace) | Invitation email → [opencode.ai](https://opencode.ai) | Free (paid by the course) | Accept the invitation before the first session with OpenCode. See below. |
+| OpenCode | [opencode.ai](https://opencode.ai) | Free with free models | Sign in when you run `/connect` in OpenCode. Paid models are optional and at your own cost. See below. |
 | Supabase | [supabase.com](https://supabase.com) | Free plan | Free projects pause after a week without activity; resume them in the dashboard. |
 | Vercel | [vercel.com/signup](https://vercel.com/signup) | Hobby (free) | Choose the Hobby plan for personal, non-commercial projects. |
 
-**Join the course workspace (recommended).** The course has a shared workspace in OpenCode that gives you access to the models without your own API key or subscription. The recommended model is **MiMo-v2.6-Flash**.
+**Use a free model (recommended).** OpenCode gives you access to free models through OpenCode Zen, with no API key or payment needed. We recommend **MiMo-V2.6-Flash** or **Nemotron 3.5**. Free models may have rate limits, and their availability can change.
 
-1. Give the lecturer the email address you want to use with OpenCode. You will receive an invitation by email.
-2. Click **Join workspace** in the email and sign in, or create an account, **with the same email address the invitation was sent to**. You can also sign in to the OpenCode Console, open the workspace menu in the top bar and click **Join** under **Pending invitations**.
-3. Check that the course workspace is selected in the workspace menu.
-
-The invitation expires after 7 days; ask for a new one if it has. Each student has a monthly budget in the workspace. You can see your own usage and remaining budget in the Console.
-
-**Other providers (optional).** OpenCode works with many providers if you would rather use your own: **GitHub Copilot** (free through the Student Developer Pack), **Anthropic (Claude) or OpenAI** (an existing plan or an API key), or your own **OpenCode Zen / Go** account. Set a spending limit on any API key you create.
+**Other providers (optional).** OpenCode works with many providers if you would rather use your own: **GitHub Copilot** (free through the Student Developer Pack), **Anthropic (Claude) or OpenAI** (an existing plan or an API key), or your own **OpenCode Zen / Go** account. These are at your own cost. Set a spending limit on any API key you create.
 
 ## 4. Install the software
 
@@ -156,8 +150,8 @@ mkdir -p ~/code && cd ~/code
 opencode
 ```
 
-1. Type `/connect`, choose **OpenCode**, and select the **course workspace** in the browser window that opens. OpenCode then uses the course workspace's models, policies and budget. (Using your own provider instead? Choose it and log in or paste your API key.)
-2. Type `/models` and pick **MiMo-v2.6-Flash**.
+1. Type `/connect`, choose **OpenCode**, and sign in in the browser window that opens. (Using your own provider instead? Choose it and log in or paste your API key.)
+2. Type `/models` and pick **MiMo-V2.6-Flash** or **Nemotron 3.5** (both are marked Free).
 3. Check that **Build** is the active agent (shown at the bottom of the screen). Press **Shift+Tab** if it is not.
 
 **Stuck? Ask Build.** When a command fails in a later step, paste this into OpenCode with your details filled in:
@@ -174,7 +168,7 @@ Rules while the agent helps you:
 - Read every command before you approve it. Ask "why?" if you don't understand it.
 - Setup fixes change your machine, never the project. If the agent wants to edit project files or tests to make a check pass, say no and ask in the course channel.
 - Never approve `sudo`, deleting files or reading `.env` unless you understand why it is needed.
-- If OpenCode itself does not work (install, invitation, `/connect`, budget), use [Troubleshooting](#12-troubleshooting).
+- If OpenCode itself does not work (install, `/connect`, model limits), use [Troubleshooting](#12-troubleshooting).
 
 ## 5. Git and GitHub: your own copy of MyMVP
 
@@ -388,8 +382,7 @@ You are ready to build when every box on day 1 is ticked.
 - [ ] `npm ci` and `npx playwright install chromium` completed
 - [ ] `npm run dev` shows the app in the browser
 - [ ] `npm run verify` passes
-- [ ] Joined the course workspace in OpenCode (invitation accepted)
-- [ ] OpenCode connected to the course workspace with `/connect`, **MiMo-v2.6-Flash** selected in `/models`, and you can see Product Assistant, Planner and Coder
+- [ ] OpenCode connected with `/connect`, **MiMo-V2.6-Flash** or **Nemotron 3.5** selected in `/models`, and you can see Product Assistant, Planner and Coder
 - [ ] Build is the active agent, and you can switch agents with **Shift+Tab** or **Ctrl+X** then **A**
 
 **Before the first data story**
@@ -424,9 +417,7 @@ Ask Build first, with the prompt in [§4](#connect-opencode-now). Use the table 
 | Port 5173 already in use | Another dev server is running | Stop it with Ctrl+C, or close the other terminal |
 | Agents missing in OpenCode, or permission errors on start | OpenCode 1 installed, or started outside the repo | Check `opencode --version` is 2.x; run `opencode` from the repo folder |
 | An agent says it may not edit a file or run a command | You selected Product Assistant, Planner or Coder directly instead of Build | Press **Shift+Tab** (or **Ctrl+X** then **A**) to switch back to Build, and ask Build to use that agent |
-| No invitation, or the course workspace is not in the workspace menu | Signed in with a different email, or the invitation expired (7 days) | Sign out and sign in with the email the invitation was sent to; ask the lecturer for a new invitation |
-| `/connect` does not show the course workspace | Invitation not accepted yet | Accept the invitation in the email or under **Pending invitations** in the Console, then run `/connect` again |
-| Model requests stop with a budget or limit error | Your monthly budget in the course workspace is used up | Check your usage in the Console and contact the lecturer |
+| Model requests stop with a rate-limit error | The free model is busy or limited | Wait a few minutes, or switch between **MiMo-V2.6-Flash** and **Nemotron 3.5** in `/models` |
 | Coder says it cannot create the Pull Request | `gh` not logged in | `gh auth login`, then `gh auth setup-git` |
 | `git push` asks for a password | Git not using the GitHub CLI login | `gh auth setup-git` |
 | App shows no data or a Supabase error | `.env` empty or wrong, or dev server not restarted | Check the two `VITE_` values, then restart `npm run dev` |
