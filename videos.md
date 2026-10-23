@@ -10,21 +10,21 @@ The lecture recording and the demo clips. Watch the full lecture once, then use 
 
 | Video | Length | Link |
 | --- | --- | --- |
-| Beyond Vibe Coding – full lecture | 1:21:38 | [Watch](https://youtu.be/9rTKgsyKrA0) |
+| Beyond Vibe Coding – full lecture | 1:38:49 | [Watch](https://youtu.be/dxGCkEh3MBU) |
 
 **Chapters in the recording**
 
-The recording is of an earlier version of the lecture: here the harness comes before the two loops. In the current [slides](lectures/Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) and [lecture notes](lectures/notes.md), *Two loops* is part 02 and *Harness and engineering control* is part 03.
+The recording follows the current version of the lecture, in the same order as the [slides](lectures/Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) and [lecture notes](lectures/notes.md).
 
 | Time | Part |
 | --- | --- |
-| [00:00](https://youtu.be/9rTKgsyKrA0?t=0) | Welcome and agenda |
-| [02:33](https://youtu.be/9rTKgsyKrA0?t=153) | 01 From vibe coding to agentic development (now: to spec-driven development) |
-| [16:18](https://youtu.be/9rTKgsyKrA0?t=978) | 02 Harness and engineering control |
-| [21:28](https://youtu.be/9rTKgsyKrA0?t=1288) | 03 Two loops |
-| [26:46](https://youtu.be/9rTKgsyKrA0?t=1606) | 04 The product loop · Demo 1 · Demo 2 |
-| [53:46](https://youtu.be/9rTKgsyKrA0?t=3226) | 05 The execution loop · Demo 3 · Demo 4 |
-| [1:19:24](https://youtu.be/9rTKgsyKrA0?t=4764) | 06 The MVP playbook |
+| [00:00](https://youtu.be/dxGCkEh3MBU?t=0) | Welcome and agenda |
+| [02:49](https://youtu.be/dxGCkEh3MBU?t=169) | 01 From vibe coding to spec-driven development · Clip: vibe coding StudyMatch |
+| [21:09](https://youtu.be/dxGCkEh3MBU?t=1269) | 02 Two loops |
+| [27:22](https://youtu.be/dxGCkEh3MBU?t=1642) | 03 Harness and engineering control |
+| [38:21](https://youtu.be/dxGCkEh3MBU?t=2301) | 04 The product loop · Demo 1 · Demo 2 |
+| [1:04:45](https://youtu.be/dxGCkEh3MBU?t=3885) | 05 The execution loop · Demo 3 · Demo 4 |
+| [1:32:55](https://youtu.be/dxGCkEh3MBU?t=5575) | 06 The MVP playbook |
 
 ## Clips and demos
 
