@@ -41,7 +41,7 @@ Everything you need after the lecture is linked from this page: the setup guide,
 | 05 | The execution loop: building the MVP, from a Ready story to an accepted increment | Demo 3 · Demo 4 |
 | 06 | The MVP playbook: seven steps and the harness you take home, with Lovable as an option | – |
 
-The [lecture recording](videos.md) is of an earlier version, where parts 02 and 03 came in the opposite order. The [slides](lectures/Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) and [lecture notes](lectures/notes.md) follow the current version.
+The [lecture recording](videos.md), the [slides](lectures/Beyond_VibeCoding_Spec-Driven_AI-Assisted_Development.pdf) and the [lecture notes](lectures/notes.md) all follow the current version of the lecture.
 
 ---
 
