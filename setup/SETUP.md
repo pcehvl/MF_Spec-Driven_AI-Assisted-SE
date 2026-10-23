@@ -166,7 +166,7 @@ Explain the likely cause, then propose a fix. Do not run anything until I approv
 Rules while the agent helps you:
 
 - Read every command before you approve it. Ask "why?" if you don't understand it.
-- Setup fixes change your machine, never the project. If the agent wants to edit project files or tests to make a check pass, say no and ask in the course channel.
+- Setup fixes change your machine, never the project. If the agent wants to edit project files or tests to make a check pass, say no and email [pcen@hvl.no](mailto:pcen@hvl.no).
 - Never approve `sudo`, deleting files or reading `.env` unless you understand why it is needed.
 - If OpenCode itself does not work (install, `/connect`, model limits), use [Troubleshooting](#12-troubleshooting).
 
@@ -425,7 +425,7 @@ Ask Build first, with the prompt in [§4](#connect-opencode-now). Use the table 
 | Vercel page is blank or a 404 on reload | Missing environment variables or SPA routing | Add both `VITE_` variables in Vercel and redeploy; ask the Planner about a `vercel.json` rewrite |
 | Very slow installs on Windows | Repo stored under `/mnt/c` in WSL | Move the repo to `~/code` inside Ubuntu |
 
-Still stuck? Post the exact command, the full error text and your operating system in the course channel.
+Still stuck? Email Per Christian Engdal at [pcen@hvl.no](mailto:pcen@hvl.no) with the exact command, the full error text and your operating system.
 
 ## Sources
 
