@@ -7,6 +7,8 @@ Course material for the lecture by Asst. Prof. Per Christian Engdal, Western Nor
 
 Everything you need after the lecture is linked from this page: the setup guide, the slides and notes, the videos and demos, and the template you build your own MVP from.
 
+> **Found something that doesn't match what you see?** Let me know – email Per Christian Engdal at [pcen@hvl.no](mailto:pcen@hvl.no) with the step and a screenshot.
+
 ---
 
 ## Start here
@@ -99,4 +101,4 @@ your-mvp/
 ## Getting help
 
 - Check **Troubleshooting** at the end of the [Setup Guide](setup/SETUP.md#12-troubleshooting) first.
-- Still stuck? Post the exact command, the full error text and your operating system in the course channel. *[Lecturer: add the link to the course channel / LMS page.]*
+- Still stuck? Email Per Christian Engdal at [pcen@hvl.no](mailto:pcen@hvl.no) with the exact command, the full error text and your operating system.
